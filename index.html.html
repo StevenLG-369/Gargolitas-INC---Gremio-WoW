@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermandad de Azeroth - WoW Guild</title>
+    <style>
+        /* Variables de color estilo WoW 3.3.5 */
+        :root {
+            --bg-principal: #121214;
+            --bg-tarjetas: #1a1a1f;
+            --dorado-wow: #f8b700;
+            --texto-claro: #e2e8f0;
+            --texto-mutado: #94a3b8;
+            --borde: #2d2d34;
+            --verde-dispo: #22c55e;
+            --rojo-lleno: #ef4444;
+
+            /* Colores de Clase oficiales */
+            --clase-warrior: #c69b6d;
+            --clase-paladin: #f48cba;
+            --clase-hunter: #aad372;
+            --clase-rogue: #fff468;
+            --clase-priest: #ffffff;
+            --clase-dk: #c41e3a;
+            --clase-shaman: #0070dd;
+            --clase-mage: #3fc7eb;
+            --clase-warlock: #8788ee;
+            --clase-druid: #ff7c0a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+    /* Fondo con imagen de WoW + Capa oscura encima para que el texto resalte */
+    background: linear-gradient(rgba(18, 18, 20, 0.85), rgba(18, 18, 20, 0.85)), 
+                url('https://www.esportmaniacos.com/wp-content/uploads/2022/08/wow-wotlk1.jpg') 
+                no-repeat center center fixed;
+    background-size: cover;
+    color: var(--texto-claro);
+    line-height: 1.6;
+            }
+
+        /* Encabezado y Navegación */
+        header {
+            background-color: rgba(26, 26, 31, 0.95);
+            border-bottom: 2px solid var(--dorado-wow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dorado-wow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--texto-claro);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--dorado-wow);
+        }
+
+        /* Sección Hero */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(18,18,20,1)), url('https://images.blz-contentstack.com/v3/assets/blt9c12f249ac15c7ec/bltbdf9df4ff4f5e7f1/66144efcb43a4192b0c345b1/tww-meta-image.jpg') no-repeat center center/cover;
+            height: 45vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--dorado-wow);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            color: var(--texto-claro);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+
+        /* DISEÑO PRINCIPAL FORZADO EN DOS COLUMNAS */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: 2.8fr 1.2fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 { font-size: 2.5rem; }
+        }
+
+        /* Secciones Estándar */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: var(--dorado-wow);
+            border-bottom: 1px solid var(--borde);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--bg-tarjetas);
+            border: 1px solid var(--borde);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ESTILOS DEL ROSTER EN GRUPOS CONTENEDORES */
+        .raid-grupos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .grupo-box {
+            background-color: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--borde);
+            border-radius: 4px;
+            padding: 1rem;
+        }
+
+        .grupo-box h3 {
+            color: var(--dorado-wow);
+            font-size: 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--borde);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .grupo-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .grupo-lista li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .grupo-lista li:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .grupo-lista li img {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            border: 1px solid #444;
+            object-fit: cover;
+        }
+
+        .grupo-lista li div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.2;
+        }
+
+        .grupo-lista li span {
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .grupo-lista li small {
+            color: var(--texto-mutado);
+            font-size: 0.75rem;
+            margin-top: 0.15rem;
+        }
+
+        /* Clases de colores de WoW */
+        .warrior { color: var(--clase-warrior); font-weight: bold; }
+        .paladin { color: var(--clase-paladin); font-weight: bold; }
+        .hunter { color: var(--clase-hunter); font-weight: bold; }
+        .rogue { color: var(--clase-rogue); font-weight: bold; }
+        .priest { color: var(--clase-priest); font-weight: bold; }
+        .dk { color: var(--clase-dk); font-weight: bold; }
+        .shaman { color: var(--clase-shaman); font-weight: bold; }
+        .mage { color: var(--clase-mage); font-weight: bold; }
+        .warlock { color: var(--clase-warlock); font-weight: bold; }
+        .druid { color: var(--clase-druid); font-weight: bold; }
+
+        /* Reclutamiento */
+        .recruitment-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid var(--borde);
+            background-color: rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.25rem;
+            border-radius: 4px;
+        }
+
+        .recruitment-status:last-child {
+            border-bottom: none;
+        }
+
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .badge.open { background-color: rgba(34, 197, 94, 0.2); color: var(--verde-dispo); }
+        .badge.closed { background-color: rgba(239, 68, 68, 0.2); color: var(--rojo-lleno); }
+
+        /* Reglas */
+        .reglas-list { padding-left: 1.25rem; }
+        .reglas-list li { margin-bottom: 0.75rem; }
+
+        /* Progreso de Raid */
+        .raid-progress { margin-bottom: 1.5rem; }
+        .raid-bar-bg { background-color: #121214; border-radius: 4px; overflow: hidden; margin-top: 0.5rem; border: 1px solid var(--borde); }
+        .raid-bar-fill { background: linear-gradient(90deg, #855300, var(--dorado-wow)); height: 20px; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.5rem; font-size: 0.8rem; font-weight: bold; color: #000; }
+
+        /* Footer */
+        footer { background-color: var(--bg-tarjetas); text-align: center; padding: 2rem; border-top: 1px solid var(--borde); color: var(--texto-mutado); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">GARGOLAS INC</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#progreso">Progreso</a></li>
+                    <li><a href="#roster">Roster</a></li>
+                    <li><a href="#reglas generales">Reglas</a></li>
+                    <li><a href="#reglas-icc25n">ICC25N</a></li>
+                    <li><a href="#reglas-icc25h">ICC25H</a></li>
+                    <li><a href="#reglas-sr25n/h">SR25N/H</a></li>
+                    <li><a href="#sistema-descuentos">Descuentos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero" id="inicio">
+        <h1>Gargolas Inc</h1>
+        <p>Hermandad gozu dedicada al progreso continuo en las diferentes raids de la expansión.</p>
+    </div>
+
+    <!-- CONTENEDOR DE DOS COLUMNAS -->
+    <div class="main-content">
+        
+        <!-- COLUMNA IZQUIERDA (ANCHE) -->
+        <main>
+            <section id="progreso">
+                <h2>Progreso de Raid</h2>
+                <div class="card">
+                    <div class="raid-progress">
+                        <div style="display: flex; justify-content: space-between;">
+                            <strong>Ciudadela de la Corona de Hielo (25N)</strong>
+                            <span>En progreso</span>
+                        </div>
+                        <div class="raid-bar-bg"><div class="raid-bar-fill" style="width: 0%;">0%</div></div>
+                    </div>
+                    <div class="raid-progress">
+                        <div style="display: flex; justify-content: space-between;">
+                            <strong>Ciudadela de la Corona de Hielo (25HC)</strong>
+                            <span>En progreso</span>
+                        </div>
+                        <div class="raid-bar-bg"><div class="raid-bar-fill" style="width: 0%;">0%</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="roster">
+                <h2>Roster del 1er Core Guild</h2>
+                <div class="raid-grupos-container">
+                    
+                    <!-- GRUPO 1 -->
+                    <div class="grupo-box">
+                        <h3>Grupo 1</h3>
+                        <ul class="grupo-lista">
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_catform.jpg" alt="Feral">
+                                <div><span class="druid">VACIO</span><small>Druida Feral</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/ability_warrior_innerrage.jpg" alt="Fury">
+                                <div><span class="warrior">VACIO</span><small>Guerrero Furia</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/ability_warrior_innerrage.jpg" alt="Fury">
+                                <div><span class="warrior">VACIO</span><small>Guerrero Furia</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_auraoflight.jpg" alt="Retri">
+                                <div><span class="paladin">Raelwyn</span><small>Paladín Represión</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/ability_marksmanship.jpg" alt="MM">
+                                <div><span class="hunter">VACIO</span><small>Cazador Puntería</small></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- GRUPO 2 -->
+                    <div class="grupo-box">
+                        <h3>Grupo 2</h3>
+                        <ul class="grupo-lista">
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/ability_rogue_shadowstrikes.jpg" alt="Rogue">
+                                <div><span class="rogue">VACIO</span><small>Pícaro</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_unholypresence.jpg" alt="Unholy">
+                                <div><span class="dk">VACIO</span><small>DK Profano</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/ability_marksmanship.jpg" alt="Hunter">
+                                <div><span class="hunter">VACIO</span><small>Cazador</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_auraoflight.jpg" alt="Retri">
+                                <div><span class="paladin">VACIO</span><small>Paladín Represión</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_classicon.jpg" alt="DK/Warr">
+                                <div><span class="dk">VACIO</span><small>DK o Guerrero</small></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- GRUPO 3 -->
+                    <div class="grupo-box">
+                        <h3>Grupo 3</h3>
+                        <ul class="grupo-lista">
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/ability_paladin_shieldofthetemplar.jpg" alt="Prot Pala">
+                                <div><span class="paladin">Raeleigh</span><small>Paladín Protección</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowwordpain.jpg" alt="Shadow">
+                                <div><span class="priest">VACIO</span><small>Sacerdote Sombras</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_fire_firebolt02.jpg" alt="Fire">
+                                <div><span class="mage">VACIO</span><small>Mago Fuego</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_fire_firebolt02.jpg" alt="Fire">
+                                <div><span class="mage">VACIO</span><small>Mago Fuego</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathanddecay.jpg" alt="Affli">
+                                <div><span class="warlock">VACIO</span><small>Brujo Aflicción</small></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- GRUPO 4 -->
+                    <div class="grupo-box">
+                        <h3>Grupo 4</h3>
+                        <ul class="grupo-lista">
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_bloodpresence.jpg" alt="Blood Tank">
+                                <div><span class="dk">VACIO</span><small>DK Sangre (Tank)</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_fire_firebolt02.jpg" alt="Fire">
+                                <div><span class="mage">VACIO</span><small>Mago Fuego</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_metamorphosis.jpg" alt="Demo">
+                                <div><span class="warlock">VACIO</span><small>Brujo Demonología</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowwordpain.jpg" alt="Shadow">
+                                <div><span class="priest">VACIO</span><small>Sacerdote Sombras</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg" alt="Boomie">
+                                <div><span class="druid">VACIO</span><small>Druida Equilibrio</small></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- GRUPO 5 -->
+                    <div class="grupo-box">
+                        <h3>Grupo 5</h3>
+                        <ul class="grupo-lista">
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_nature_healingtouch.jpg" alt="Resto Dudu">
+                                <div><span class="druid">VACIO</span><small>Druida Restauración</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_powerwordshield.jpg" alt="Disci">
+                                <div><span class="priest">VACIO</span><small>Sacerdote Disciplina</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_holybolt.jpg" alt="Holy Pala">
+                                <div><span class="paladin">VACIO</span><small>Paladín Sagrado</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_nature_magicimmunity.jpg" alt="Resto Chami">
+                                <div><span class="shaman">VACIO</span><small>Chamán Restauración</small></div>
+                            </li>
+                            <li>
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_nature_magicimmunity.jpg" alt="Resto Chami">
+                                <div><span class="shaman">VACIO</span><small>Chamán Restauración</small></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="reglas generales">
+                <h2>Reglas Generales de la Hermandad</h2>
+    <div class="card" style="padding: 2rem;">
+        
+        <!-- BLOQUE I -->
+        <div class="bloque-regla" style="margin-bottom: 2rem;">
+            <h3 style="color: var(--dorado-wow); border-bottom: 1px solid #333; padding-bottom: 0.25rem; margin-bottom: 1rem; font-size: 1.2rem;">
+                I. Convivencia y Respeto
+            </h3>
+            
+            <p style="margin-bottom: 1rem;">
+                <strong>Respeto Mutuo es la Prioridad:</strong><br>
+                <span style="color: var(--texto-mutado);">Tratamos a todos los miembros de la hermandad con respeto y cortesía. Mantenemos una comunicación positiva, ya sea en el chat del juego, Discord o WhatsApp. No se tolerará el acoso, la toxicidad, la discriminación ni los insultos.</span>
+            </p>
+            
+            <p style="margin-bottom: 1rem;">
+                <strong>Espíritu de Comunidad y Apoyo:</strong><br>
+                <span style="color: var(--texto-mutado);">Fomentamos activamente la ayuda mutua. Si un compañero pide ayuda (con misiones, farmeo, mazmorras, o consejos), ofrécela si puedes. Compartir el conocimiento y los buenos consejos para mejorar la experiencia de juego de todos es fundamental.</span>
+            </p>
+            
+            <p style="margin-bottom: 0.5rem;">
+                <strong>Libertad de Expresión Responsable:</strong><br>
+                <span style="color: var(--texto-mutado);">Todos tienen derecho a expresarse y compartir sus experiencias, opiniones o críticas, siempre y cuando se mantenga el punto 1 (Respeto). Las discusiones deben ser constructivas.</span>
+            </p>
+        </div>
+
+        <!-- BLOQUE II -->
+        <div class="bloque-regla">
+            <h3 style="color: var(--dorado-wow); border-bottom: 1px solid #333; padding-bottom: 0.25rem; margin-bottom: 1rem; font-size: 1.2rem;">
+                II. Ética del Jugador y Gestión de Recursos
+            </h3>
+            
+            <p style="margin-bottom: 1rem;">
+                <strong>No al Ninja Looting y al Egoísmo:</strong><br>
+                <span style="color: var(--texto-mutado);">Somos una hermandad, no una colección de jugadores individuales. El egoísmo excesivo, el abuso de los sistemas de loot o el ser un "jugador con hambre de ítems" (item-hungry) que solo piensa en sí mismo, serán temas de advertencia. El objetivo es progresar como grupo. Tras una advertencia, la reincidencia resultará en la expulsión de la hermandad.</span>
+            </p>
+            
+            <p style="margin-bottom: 1.5rem;">
+                <strong>Distribución de Ítems Especiales y Misiones (Agonía de Sombras):</strong><br>
+                <span style="color: var(--texto-mutado);">Los materiales raros del banco (como BOEs, Saronita, Orbes Gélidos, etc.) y la asignación para las misiones de Agonía de Sombras serán evaluados por la oficialidad. La prioridad se dará en función del rendimiento, el compromiso, la asistencia a raids y la ética de hermandad demostrada en las raids.</span>
+            </p>
+
+            <!-- NOTA ADICIONAL DE REPARTICIÓN -->
+            <div style="background-color: rgba(248, 183, 0, 0.05); border-left: 3px solid var(--dorado-wow); padding: 1rem; border-radius: 0 4px 4px 0;">
+                <p style="margin: 0; font-size: 0.95rem; font-style: italic;">
+                    📌 <strong>Sistema de Loot:</strong> La repartición de loot será por prioridad conforme a los <strong>BiS basados en el foro de UltimoWoW</strong>, criterio del RL (Raid Leader) y sus ayudantes.
+                </p>
+            </div>
+            </section>
+            <section id="reglas-raid">
+            <h2>Reglas Específicas de Raid</h2>
+    <div class="card" style="padding: 2rem;">
+        <p style="color: var(--texto-mutado); font-style: italic; margin-bottom: 1.5rem; font-size: 1.05rem;">
+            Estas reglas aseguran que nuestras raids sean eficientes, organizadas y exitosas.
+        </p>
+        
+        <!-- Línea de Liderazgo -->
+        <div style="margin-bottom: 1.25rem;">
+            <p style="margin-bottom: 0.5rem;">
+                <strong>👑 Estructura de Liderazgo Clara:</strong><br>
+                <span style="color: var(--texto-mutado);">La organización y dirección de la raid es responsabilidad absoluta del Líder de Banda y de los Oficiales designados. Sus decisiones sobre estrategia, loot y composición son finales.</span>
+            </p>
+        </div>
+
+        <!-- Comunicación -->
+        <div style="margin-bottom: 1.25rem;">
+            <p style="margin-bottom: 0.5rem;">
+                <strong>🎙️ Comunicación en Encuentros de Jefes:</strong><br>
+                <span style="color: var(--texto-mutado);">Para evitar confusiones durante los *boss fights*, solo el Líder de Banda y los Oficiales/Asistentes encargados de caleo (dar instrucciones) deben hablar en el canal de voz. Los demás miembros deben escuchar atentamente y seguir las instrucciones. Las preguntas o comentarios se reservarán para los tiempos de descanso (trash o wipes).</span>
+            </p>
+        </div>
+
+        <!-- Compromiso -->
+        <div style="margin-bottom: 1.25rem;">
+            <p style="margin-bottom: 0.5rem;">
+                <strong>⚔️ Compromiso y Rendimiento:</strong><br>
+                <span style="color: var(--texto-mutado);">Se espera que todos los miembros se presenten a las raids preparados (con encantamientos, gemas, consumibles, addons actualizados y conocimiento de las estrategias).</span>
+            </p>
+        </div>
+
+        <!-- Evaluación -->
+        <div style="margin-bottom: 1.25rem;">
+            <p style="margin-bottom: 0.5rem;">
+                <strong>📊 Evaluación y Consecuencias del Desempeño:</strong><br>
+                <span style="color: var(--texto-mutado);">El desempeño y rendimiento se monitorean constantemente. Esto incluye seguir las mecánicas correctamente y evitar causar wipes. Si tu rendimiento es consistentemente bajo o fallas repetidamente en mecánicas críticas, serás primeramente aconsejado. En el peor de los casos y para proteger la progresión del grupo, el Líder de Banda tiene la autoridad de reemplazarte temporalmente o permanentemente.</span>
+            </p>
+        </div>
+
+        <!-- Asistencia -->
+        <div style="margin-bottom: 1.25rem;">
+            <p style="margin-bottom: 0.5rem;">
+                <strong>📅 Mantente Informado y Confirma tu Asistencia:</strong><br>
+                <span style="color: var(--texto-mutado);">Es responsabilidad de cada miembro estar al tanto de los anuncios de hermandad (en el chat, Discord o WhatsApp). Esto es crucial para conocer horarios de raid, requisitos y eventos especiales. Confirma tu asistencia a los eventos de raid cuando se solicite.</span>
+            </p>
+        </div>
+
+        <!-- Ausencias -->
+        <div>
+            <p style="margin-bottom: 0.5rem;">
+                <strong>⚠️ Ausencias y Desconexiones:</strong><br>
+                <span style="color: var(--texto-mutado);">Si tienes una emergencia o sabes que no podrás asistir a una raid a la que te has comprometido, avisa al Líder de Banda u Oficial con la mayor antelación posible. Las desconexiones inesperadas deben ser comunicadas si es posible.</span>
+            </p>
+        </div>
+            </section>
+            <section id="reglas-raid-agonia">
+    <h2>Reglas Adicionales: Misiones y Agonía</h2>
+    <div class="card" style="padding: 2rem;">
+        
+        <!-- RESERVA DE ÍTEMS -->
+        <div style="margin-bottom: 2rem;">
+            <h3 style="color: var(--clase-dk); border-bottom: 1px solid #333; padding-bottom: 0.25rem; margin-bottom: 1rem; font-size: 1.15rem;">
+                🧪 Reserva de Ítems de Misión (ICC / Ulduar)
+            </h3>
+            <ul class="reglas-list" style="color: var(--texto-mutado); font-size: 0.95rem;">
+                <li style="margin-bottom: 0.5rem;"><strong>Objetos Regulados:</strong> Aplica para Sangres (Panzachancro/Carapútrea), Fragmentos de Escarcha (ICC 25) y Fragmentos de Val'anyr (Ulduar 25).</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Aprobación Previa:</strong> Toda reserva debe ser notificada y aprobada por la oficialidad antes de iniciar la raid.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Evaluación Holística:</strong> Si hay varios solicitantes, la oficialidad decidirá según rendimiento, asistencia, compromiso y ética de hermandad.</li>
+                <li><strong style="color: var(--dorado-wow);">🪓 El Impuesto del Festín:</strong> El jugador asignado a la cadena de Fragmentos de Escarcha deberá garantizar y colocar el <strong>Festín de Pescado</strong> en cada boss de la raid.</li>
+            </ul>
+        </div>
+
+        <!-- MISIONES PARA LA AGONÍA -->
+        <div>
+            <h3 style="color: var(--clase-paladin); border-bottom: 1px solid #333; padding-bottom: 0.25rem; margin-bottom: 1rem; font-size: 1.15rem;">
+                🪓 Requisitos Críticos para la Agonía de Sombras
+            </h3>
+            
+            <p style="margin-bottom: 1rem; font-size: 0.95rem;">
+                <strong>1. Transparencia y Elegibilidad:</strong><br>
+                <span style="color: var(--texto-mutado);">Cualquier miembro elegible (Warr, DK Profano/Escarcha, Pala Retri) puede postular sin dar ningún pago o beneficio extra. Solo debe ganarse el cupo demostrando un alto compromiso en las Raids Core de ICC 25N o Farmeo. La toxicidad o el egoísmo te excluyen de inmediato.</span>
+            </p>
+
+            <p style="margin-bottom: 1rem; font-size: 0.95rem;">
+                <strong>2. Filtro Técnico de DPS Mínimo (Single Target):</strong><br>
+                <span style="color: var(--texto-mutado);">Para garantizar el máximo aprovechamiento del arma, se exige un rendimiento impecable en <strong>Panzachancro</strong>:</span>
+                <span style="display: block; margin-top: 0.25rem; color: var(--texto-claro);">
+                    • ⚔️ <strong>DK / Guerrero:</strong> Mínimo <strong>13K DPS</strong> sostenido.<br>
+                    • 🌸 <strong>Paladín Reprensión:</strong> Mínimo <strong>12K DPS</strong> sostenido.
+                </span>
+                <span style="color: var(--texto-mutado); display: block; margin-top: 0.25rem;">También se evaluará estrictamente el daño en Carapútrea, Libramorte y Reina.</span>
+            </p>
+
+            <p style="margin-bottom: 1rem; font-size: 0.95rem;">
+                <strong>3. Mecánicas sobre DPS:</strong><br>
+                <span style="color: var(--texto-mutado);">Un DPS alto no sirve si causas wipes. Se exige ejecución perfecta en mecánicas clave: focusear Púas y Bestias, moverse correctamente en mocos/charcos, y controlar la mordida/fuego. Cometer fallos mecánicos recurrentes anula tu puntuación de daño y te saca de la lista.</span>
+            </p>
+
+            <p style="margin-bottom: 1rem; font-size: 0.95rem;">
+                <strong>4. Política Estricta de Wipes en Misiones:</strong><br>
+                <span style="color: var(--texto-mutado);">La progresión de la raid no se va a estancar por una misión. Se aplicará el siguiente límite de intentos:</span>
+                <span style="display: block; margin-top: 0.25rem; color: var(--texto-claro);">
+                    • 🛑 <strong>Fallo del jugador en misión:</strong> Solo tiene <strong>1 intento</strong> para completarla. Si wipea al grupo, se continúa la raid.<br>
+                    • ⚠️ <strong>Fallo causado por otro miembro:</strong> Se le otorgará al jugador de la misión <strong>1 intento extra</strong> (2 en total).
+                </span>
+                <span style="color: var(--texto-mutado); display: block; margin-top: 0.25rem;">Si se exceden los intentos, la raid avanza y se deberá reintentar en otra ID.</span>
+            </p>
+
+            <p style="margin-size: 0.95rem; margin-bottom: 0;">
+                <strong>5. Registro y Transparencia:</strong><br>
+                <span style="color: var(--texto-mutado);">El Líder de Banda y los Oficiales llevarán el registro de evaluación (asistencia, DPS, mecánicas). Esta lista será compartida de forma transparente con toda la hermandad después de cada raid para evitar favoritismos.</span>
+            </p>
+        </div>
+
+    </div>
+            </section>
+            <section id="reglas-icc25n">
+    <h2>Reglas ICC 25N</h2>
+    <div class="card" style="padding: 1.5rem; font-size: 0.9rem;">
+
+        <!-- 1. GENERALES -->
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid #222; padding-bottom: 1rem;">
+            <h3 style="color: var(--dorado-wow); font-size: 1.1rem; margin-bottom: 0.5rem;">📦 Normas de Loot</h3>
+            <span style="color: var(--texto-mutado);">
+                • <strong>Prioridad:</strong> MAIN &gt; DUAL (Cambios se avisan antes de iniciar la raid).<br>
+                • <strong>Límites:</strong> Max 1 ítem Main (Tanques/Heals lotean 2), 2 Dual, 1 Marca, 1 Abalorio y 1 Arma.<br>
+                • <strong>Marcas (T10):</strong> Obligatorio tener el T10 base <strong>Engemado y Encantado (EyE)</strong> PvE.<br>
+                • <strong>Saronitas y BOEs:</strong> No se lotean, van al Banco de Hermandad para progresión.
+            </span>
+        </div>
+
+        <!-- 2. ABALORIOS -->
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid #222; padding-bottom: 1rem;">
+            <h3 style="color: var(--dorado-wow); font-size: 1.1rem; margin-bottom: 0.5rem;">✨ Filtros para Abalorios</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background-color: rgba(0,0,0,0.2);">
+                <thead>
+                    <tr style="background-color: rgba(248, 183, 0, 0.05); color: var(--dorado-wow); text-align: left;">
+                        <th style="padding: 0.5rem; border: 1px solid var(--borde);">Abalorio</th>
+                        <th style="padding: 0.5rem; border: 1px solid var(--borde);">Métrica Requerida</th>
+                        <th style="padding: 0.5rem; border: 1px solid var(--borde);">Lotean</th>
+                    </tr>
+                </thead>
+                <tbody style="color: var(--texto-claro);">
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Testamento</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 5</strong> Panzachancro + 5% Daño Bestias (Libramorte)</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Warr, DK, Feral, Pícaro Combate, Hunter, Chami Mejora. (Pala solo con Agonía).</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Abominación</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 5</strong> Panzachancro + 5% Daño Bestias (Libramorte)</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Paladín Reprensión y Pícaro Asesinato.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Ábaco</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 3</strong> Curación en Reina (o Carapútrea si no se hace)</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Healers: Chamán, Druida y Sacerdote.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Objeto Extraño</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 5</strong> Panzachancro + 5% Bestias <span style="color: var(--dorado-wow);">(Auras: TOP 6)</span></td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Casters (Magos, Brujos, etc.).</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Filacteria</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 3</strong> Profesor + 12% Daño Mocos <span style="color: var(--dorado-wow);">(Auras: TOP 4)</span></td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Todos los Casters. <span style="color: var(--rojo-lleno);">(LK para reemplazos).</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--texto-mutado); font-style: italic;">
+                ⚠️ <strong>Descarte:</strong> Si nadie cumple, va al siguiente del top. <strong>Huso:</strong> Min 10K DPS Panzachancro / Disci TOP 3 Reina.
+            </p>
+        </div>
+
+        <!-- 3. ARMAS DE ARTHAS -->
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid #222; padding-bottom: 1rem;">
+            <h3 style="color: var(--dorado-wow); font-size: 1.1rem; margin-bottom: 0.5rem;">⚔️ Armas de LK (Arthas)</h3>
+            <p style="margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--texto-mutado);">
+                <strong>Filtro General:</strong> DPS: <strong>TOP 10 + 4% en Val'kyrs</strong> | Healers: <strong>TOP 3 Sanación/Absorción</strong>.
+            </p>
+            <ul style="grid-template-columns: 1fr 1fr; display: grid; gap: 0.25rem; padding-left: 1rem; color: var(--texto-mutado); font-size: 0.85rem;">
+                <li>• <strong>Terenas:</strong> Spriest, Disci, Pollo, Ele, Chami Heal.</li>
+                <li>• <strong>Glorenzelg:</strong> Warr Furia, DK (Sg/Prof), Pala Retri.</li>
+                <li>• <strong>Oleada de Sangre:</strong> Mago, Brujo, Pala Heal.</li>
+                <li>• <strong>Fal´inrush:</strong> Hunter (Prio), Warr Furia, Pícaro.</li>
+                <li>• <strong>Archus:</strong> Druida Heal, Sacer Sagrado.</li>
+                <li>• <strong>Vinculador:</strong> Druida Feral/Oso, Cazador.</li>
+                <li>• <strong>Llamada del Caos:</strong> Pícaro Combate, DK Escarcha, Mejora.</li>
+                <li>• <strong>Mithrios:</strong> Tanques (Pala, Warr, DK Escarcha).</li>
+            </ul>
+        </div>
+
+        <!-- 4. DISCIPLINA -->
+        <div>
+            <h3 style="color: var(--rojo-lleno); font-size: 1.1rem; margin-bottom: 0.5rem;">🛑 Disciplina y Penalizaciones</h3>
+            <span style="color: var(--texto-mutado);">
+                • <strong>Discord Obligatorio:</strong> Estar de oyente mínimo. <strong>Sin Discord no hay loot.</strong><br>
+                • <strong>AFK Injustificado:</strong> Más de 5 min o en Boss fight = Pérdida de loot del boss y expulsión.<br>
+                • <strong>Negligencia/Wipes:</strong> Fallar mecánicas adrede o toxiquear = Descuento de dados o expulsión sin loot.
+            </span>
+        </div>
+
+        </div>
+            </section>
+            <section id="reglas-icc25h">
+    <h2>Reglas ICC 25 Heroica</h2>
+    <div class="card" style="padding: 1.5rem; font-size: 0.9rem;">
+
+        <!-- 1. GENERALES HEROICO -->
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid #222; padding-bottom: 1rem;">
+            <h3 style="color: var(--rojo-lleno); font-size: 1.1rem; margin-bottom: 0.5rem;">💀 Normas de Loot (Heroico)</h3>
+            <span style="color: var(--texto-mutado);">
+                • <strong>Prioridad:</strong> MAIN &gt; DUAL (Se prioriza BiS foro UltimoWoW, criterio del RL y ayudantes).<br>
+                • <strong>Límites:</strong> Max 1 ítem Main, 1 Dual, 1 Marca H, 1 Abalorio y 1 Arma (Sostener, escudos y varitas cuentan como arma).<br>
+                • <strong>Requisitos de Raid:</strong> Obligatorio tener <strong>2 frascos</strong> en bolsa y estar atento a Discord. (No hay responsabilidad por muertes en pleno top).<br>
+                • <strong>Loot Dual:</strong> Obligatorio mostrar la rama Dual **Engemada y Encantada (EyE)**.<br>
+                • <strong>Saronitas y BOEs:</strong> No se lotean; van al Banco de Hermandad.
+            </span>
+            
+            <!-- FILTRO EXCLUSIVO PARA MARCAS HEROICAS -->
+            <div style="margin-top: 0.75rem; background-color: rgba(196, 30, 58, 0.05); padding: 0.75rem; border-radius: 4px; border-left: 3px solid var(--rojo-lleno);">
+                <strong style="color: var(--texto-claro);">🛡️ Filtro para Marcas H:</strong> Requiere <strong>4 T10 Santificados (EyE PvE)</strong> + Linkearlo por banda.
+                <span style="display: block; margin-top: 0.25rem; font-size: 0.85rem;">
+                    • <strong>En Libramorte:</strong> Melés min <strong>15K DPS</strong> | Casters min <strong>14K DPS</strong> | Apoyo min <strong>12K DPS</strong>.<br>
+                    • <strong>Healers:</strong> TOP 3 en Reina. (Si nadie cumple, se abre por Dual).<br>
+                    • <strong style="color: #2ee6e6;">Excepción:</strong> Pala Tank, Pala Heal y Pícaro Asesinato lotean con solo <strong>2 T10 Santificados</strong>.
+                </span>
+            </div>
+        </div>
+
+        <!-- 2. ABALORIOS HEROICOS -->
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid #222; padding-bottom: 1rem;">
+            <h3 style="color: var(--rojo-lleno); font-size: 1.1rem; margin-bottom: 0.5rem;">✨ Filtros para Abalorios H</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background-color: rgba(0,0,0,0.2);">
+                <thead>
+                    <tr style="background-color: rgba(239, 68, 68, 0.05); color: var(--rojo-lleno); text-align: left;">
+                        <th style="padding: 0.5rem; border: 1px solid var(--borde);">Abalorio H</th>
+                        <th style="padding: 0.5rem; border: 1px solid var(--borde);">Métrica Requerida</th>
+                        <th style="padding: 0.5rem; border: 1px solid var(--borde);">Lotean</th>
+                    </tr>
+                </thead>
+                <tbody style="color: var(--texto-claro);">
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Testamento H</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 5</strong> Libramorte + 4% Daño Bestias</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Warr, DK, Feral, Pícaro Combate, Hunter, Chami Mejora. (Pala solo con Agonía).</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Abominación H</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 5</strong> Libramorte + 4% Daño Bestias</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Paladín Reprensión y Pícaro Asesinato.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Objeto Extraño H</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 5</strong> Panzachancro + 4% Bestias <span style="color: var(--dorado-wow);">(Auras: TOP 6)</span></td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Casters (Magos, Brujos, etc.).</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Ábaco H</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 3</strong> Curación en Reina (o Carapútrea)</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Healers: Chamán, Druida y Sacerdote.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Filacteria H</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 3</strong> Profesor + 12% Daño Mocos <span style="color: var(--dorado-wow);">(Auras: TOP 4)</span></td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Todos los Casters. <span style="color: var(--rojo-lleno);">(LK para reemplazos).</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- Notas de descarte y Loot específico -->
+            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--texto-mutado); line-height: 1.4;">
+                • 📌 <strong>Marcados en Libramorte:</strong> Se les exceptúa de la exigencia del % de daño en bestias.<br>
+                • 📌 <strong>Huso / Gargantilla de Reina:</strong> Min 14K DPS en Panzachancro | Healers/Disci TOP 3 en Reina.<br>
+                • 📌 <strong>Condiciones específicas de ítems:</strong>
+                <span style="display: block; padding-left: 0.75rem; font-size: 0.8rem; color: #2ee6e6;">
+                    - <strong>Huesopúa:</strong> Sacerdote Disciplina por Main Spec.<br>
+                    - <strong>Trauma:</strong> Solo Druida, Chamán y Sacerdote Sagrado.<br>
+                    - <strong>Rápido Ascenso:</strong> Casters y Heals (Excluye terminantemente a Druida Heal).<br>
+                    - <strong style="color: var(--rojo-lleno);">DK Escarcha:</strong> Si no tiene gemas de ArPen (Penetración de Armadura), NO lotea cuero.
+                </span>
+            </div>
+        </div>
+
+        <!-- 3. ARMAS DE ARTHAS HEROICO -->
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid #222; padding-bottom: 1rem;">
+            <h3 style="color: var(--rojo-lleno); font-size: 1.1rem; margin-bottom: 0.5rem;">⚔️ Armas de LK Heroico</h3>
+            <p style="margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--texto-mutado);">
+                <strong>Filtro General:</strong> DPS: <strong>TOP 10 + 4% en Val'kyrs</strong> | Healers: <strong>TOP 3 Sanación/Absorción</strong>. Priority de clase:
+            </p>
+            <ul style="grid-template-columns: 1fr 1fr; display: grid; gap: 0.25rem; padding-left: 1rem; color: var(--texto-mutado); font-size: 0.85rem;">
+                <li>• <strong>Terenas:</strong> Spriest, Disci, Pollo, Ele, Chami Heal.</li>
+                <li>• <strong>Glorenzelg:</strong> Warr Furia, DK (Sg/Prof), Pala Retri.</li>
+                <li>• <strong>Oleada de Sangre:</strong> Mago, Brujo, Pala Heal.</li>
+                <li>• <strong>Fal´inrush:</strong> Hunter (Prio), Warr Furia, Pícaro.</li>
+                <li>• <strong>Archus:</strong> Druida Heal, Sacer Sagrado.</li>
+                <li>• <strong>Vinculador:</strong> Druida Feral/Oso, Cazador.</li>
+                <li>• <strong>Llamada del Caos:</strong> Pícaro Combate, DK Escarcha, Mejora.</li>
+                <li>• <strong>Mithrios:</strong> Tanques (Pala, Warr, DK Escarcha).</li>
+            </ul>
+        </div>
+
+    </div>
+            </section>
+            <section id="reglas-sr25n/h">
+    <h2>Reglas Sagrario Rubí 25N - 25H</h2>
+    <div class="card" style="padding: 1.5rem; font-size: 0.9rem;">
+
+        <!-- 1. GENERALES Y SANCIONES -->
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid #222; padding-bottom: 1rem;">
+            <h3 style="color: #e6cc80; font-size: 1.1rem; margin-bottom: 0.5rem;">🌋 Normas Generales y Control</h3>
+            <span style="color: var(--texto-mutado);">
+                • <strong>Prioridad:</strong> MAIN &gt; DUAL (Cambios se avisan estrictamente antes de iniciar).<br>
+                • <strong>Límite:</strong> Máximo 1 ítem por raid (Las escamas cuentan como ítem).<br>
+                • <strong>Tops Oficiales:</strong> Se obtienen cerrados del Skada del RL o ayudantes. Si nadie cumple o ya lo tiene, pasa al siguiente.<br>
+                • <strong style="color: var(--rojo-lleno);">🎙️ Sin Discord:</strong> Jugador que no esté conectado en el canal de voz NO lotea.<br>
+                • <strong style="color: var(--rojo-lleno);">🛑 Control de Daño:</strong> El que no pare DPS a la 1ra advertencia, a la 2da es botado sin derecho a loot.
+            </span>
+            
+            <!-- ALERTA CRÍTICA DE MUERTE EN HALION -->
+            <div style="margin-top: 0.75rem; background-color: rgba(239, 68, 68, 0.08); padding: 0.75rem; border-radius: 4px; border-left: 3px solid var(--rojo-lleno);">
+                <strong style="color: var(--texto-claro);">💀 Filtro por Mecánica (Halion):</strong> Quien muera en el try por comerse una mala mecánica <em>(meteoro, fuego, corte, aliento, etc.)</em> <strong>PIERDE DERECHO A LOOT</strong>. 
+                <span style="display: block; margin-top: 0.2rem; font-size: 0.85rem; color: var(--texto-mutado); font-style: italic;">(Nota: En caso de muerte fortuita de los tanques, el TOP de daño/cura se respeta igual).</span>
+            </div>
+        </div>
+
+        <!-- 2. LAS ESCAMAS CREPUSCULARES -->
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid #222; padding-bottom: 1rem;">
+            <h3 style="color: #e6cc80; font-size: 1.1rem; margin-bottom: 0.5rem;">✨ Control de Escamas (TOP Cerrado)</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background-color: rgba(0,0,0,0.2);">
+                <thead>
+                    <tr style="background-color: rgba(230, 204, 128, 0.05); color: #e6cc80; text-align: left;">
+                        <th style="padding: 0.5rem; border: 1px solid var(--borde);">Escama Crepuscular</th>
+                        <th style="padding: 0.5rem; border: 1px solid var(--borde);">Métrica Exigida</th>
+                        <th style="padding: 0.5rem; border: 1px solid var(--borde);">Restricciones de Clase</th>
+                    </tr>
+                </thead>
+                <tbody style="color: var(--texto-claro);">
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Afilada (Melee)</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 3 Cerrado</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Warr, DK, Feral, Pícaro, Mejora. Pala solo con Agonía. <span style="color: #2ee6e6;">Prio al 1er Hunter del TOP 3 Físico.</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Ardiente (Caster)</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 3 Cerrado</strong> <span style="color: var(--dorado-wow);">(Auras: TOP 4)</span></td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Todos los Casters. (Auras: Demo, Pollo, Ele).</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Petrificada (Healer)</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>TOP 2 Adentro / TOP 1 Afuera</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Todos los Healers activos en sus respectivos reinos.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: #a33ed5; font-weight: bold;">Defensora (Tanque)</td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde);"><strong>Solo Tanques Principales</strong></td>
+                        <td style="padding: 0.5rem; border: 1px solid var(--borde); color: var(--texto-mutado);">Lotean por DUAL si los MT ya la tienen. Ganador debe mostrar talentos y set listo (EyE).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 3. LOOT DE ARMADURAS Y JOYERÍA -->
+        <div>
+            <h3 style="color: #e6cc80; font-size: 1.1rem; margin-bottom: 0.5rem;">⚔️ Criterio de Asignación por Ítem</h3>
+            <ul style="grid-template-columns: 1fr 1fr; display: grid; gap: 0.4rem; padding-left: 1rem; color: var(--texto-mutado); font-size: 0.85rem;">
+                <li>• <strong>Avanzado del Apocalipsis:</strong> Pala Retri, DK Profano, DK Frost (con 2 armas LK), Warr (con Glorenzelg).</li>
+                <li>• <strong>Pisadas de Regreso:</strong> Cazador y Chamán Mejora.</li>
+                <li>• <strong>Pasos de Vaticinio:</strong> Paladín Healer.</li>
+                <li>• <strong>Cinturón de Forma Partida:</strong> Chami Ele, Chami Heal y Paladín Healer.</li>
+                <li>• <strong>Bandas Agraviadas:</strong> Pala Retri, Chami Mejora, Pícaro Asesinato, Feral u Oso.</li>
+                <li>• <strong>Brazales de Cambio de Fase:</strong> Pollo, Chami Ele, Chami Heal, Pala Heal, Druida Heal.</li>
+                <li>• <strong>Brazales de Noche Ígnea:</strong> Mago, Brujo, Shadow Priest, Sacerdote Disci.</li>
+                <li>• <strong>Capa de Ocaso Ardiente:</strong> Mago, Brujo, Pollo, Shadow, Disci, Chami Ele/Heal, Pala Heal.</li>
+                <li>• <strong>Colgante de Lobreguez:</strong> Guerrero, DK Frost, Paladín (solo si tiene Agonía).</li>
+                <li>• <strong>Anillo de Regeneración:</strong> Todos los Healers.</li>
+                <li>• <strong>Sello de Crepúsculo:</strong> Paladines, Chamán Mejora, Pícaro Asesinato, Feral y Oso.</li>
+            </ul>
+        </div>
+
+    </div>
+            </section>
+            <section id="sistema-descuentos">
+    <h2>Sistema de Descuentos por Malas Mecánicas</h2>
+    <div class="card" style="padding: 1.5rem; font-size: 0.9rem;">
+        <p style="color: var(--texto-mutado); font-style: italic; margin-bottom: 1.25rem;">
+            ⚠️ Los siguientes errores aplican descuentos directos en los dados para el loot del encuentro afectado. Errores muy graves o constantes resultarán en la pérdida del derecho a lotear 1 ítem o en la expulsión (Kick) de la raid.
+        </p>
+
+        <!-- GRID DE JEFES -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; color: var(--texto-mutado);">
+            
+            <!-- LADY & LIBRAMORTE -->
+            <div style="background-color: rgba(255,255,255,0.01); padding: 0.75rem; border-radius: 4px; border: 1px solid var(--borde);">
+                <strong style="color: #a33ed5;">💀 Lady Susurramuerte</strong>
+                <span style="display: block; margin-top: 0.25rem; font-size: 0.85rem; line-height: 1.4;">
+                    • Comerse espíritus (a partir del 2do): <strong style="color: var(--rojo-lleno);">-20 dados</strong><br>
+                    • Matar a un compañero controlado: <strong style="color: var(--rojo-lleno);">-30 dados</strong><br>
+                    • No desarmarse/parar y matar siendo controlado (Melee/Hunter): <strong style="color: var(--rojo-lleno);">-30 dados</strong>
+                </span>
+                
+                <strong style="color: #a33ed5; display: block; margin-top: 0.75rem;">🩸 Libramorte Colmillosaurio</strong>
+                <span style="display: block; margin-top: 0.25rem; font-size: 0.85rem; line-height: 1.4;">
+                    • No pegar a las Bestias (~100K daño min; exceptúa marcados): <strong style="color: var(--rojo-lleno);">-30 dados</strong>
+                </span>
+            </div>
+
+            <!-- PANZACHANCRO & PRINCIPES & REINA -->
+            <div style="background-color: rgba(255,255,255,0.01); padding: 0.75rem; border-radius: 4px; border: 1px solid var(--borde);">
+                <strong style="color: #a33ed5;">🤮 Panzachancro</strong>
+                <span style="display: block; margin-top: 0.25rem; font-size: 0.85rem; line-height: 1.4;">
+                    • Morir por Añublo (excepto vomitados): <strong style="color: var(--rojo-lleno);">-30 dados</strong><br>
+                    • No moverse o no salir con la Espora: <strong style="color: var(--rojo-lleno);">-30 dados</strong>
+                </span>
+
+                <strong style="color: #a33ed5; display: block; margin-top: 0.5rem;">👑 Príncipes & Reina</strong>
+                <span style="display: block; margin-top: 0.25rem; font-size: 0.85rem; line-height: 1.4;">
+                    • No correr con Llama Potenciada y matar banda: <strong style="color: var(--rojo-lleno);">-30 dados</strong><br>
+                    • Quedarse controlado por falta de mordida: <strong style="color: var(--rojo-lleno);">-50 dados</strong>
+                </span>
+            </div>
+
+            <!-- PROFESOR PUTRICIDIO -->
+            <div style="background-color: rgba(255,255,255,0.01); padding: 0.75rem; border-radius: 4px; border: 1px solid var(--borde); grid-column: span 2;">
+                <strong style="color: #a33ed5;">🧪 Profesor Putricidio</strong>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.25rem; font-size: 0.85rem; line-height: 1.4;">
+                    <div>
+                        • Cada moco maleable comido: <strong style="color: var(--rojo-lleno);">-10 dados</strong><br>
+                        • Cada botella naranja comida: <strong style="color: var(--rojo-lleno);">-10 dados</strong><br>
+                        • Morir por no pasar la Peste: <strong style="color: var(--rojo-lleno);">-30 dados</strong>
+                    </div>
+                    <div>
+                        • Mal posicionamiento del Tank (afectar melees): <strong style="color: var(--rojo-lleno);">-20 dados</strong><br>
+                        • No correr cuando te fije el Moco Rojo: <strong style="color: var(--rojo-lleno);">-50 dados</strong><br>
+                        • No moverse en Fase 3 (dejar mal el charco): <strong style="color: var(--rojo-lleno);">-30 dados</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SINDRAGOSA -->
+            <div style="background-color: rgba(255,255,255,0.01); padding: 0.75rem; border-radius: 4px; border: 1px solid var(--borde); grid-column: span 2;">
+                <strong style="color: #a33ed5;">❄️ Sindragosa</strong>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.25rem; font-size: 0.85rem; line-height: 1.4;">
+                    <div>
+                        • Morir por Frío Virulento (jalar): <strong style="color: var(--rojo-lleno);">-30 dados</strong><br>
+                        • Morir por Bomba de Escarcha (Fase aérea): <strong style="color: var(--rojo-lleno);">-30 dados</strong>
+                    </div>
+                    <div>
+                        • Reventar con Magia Desencadenada en F2: <strong style="color: var(--rojo-lleno);">-30 dados</strong><br>
+                        • Morir con Tumba en F2 por no limpiarse cargas: <strong style="color: var(--rojo-lleno);">-20 dados</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REY EXÁNIME -->
+            <div style="background-color: rgba(255,255,255,0.01); padding: 0.75rem; border-radius: 4px; border: 1px solid var(--borde); grid-column: span 2;">
+                <strong style="color: var(--rojo-lleno);">👑 El Rey Exánime (Arthas)</strong>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.25rem; font-size: 0.85rem; line-height: 1.4;">
+                    <div>
+                        • Dejar un mal Profanar (gigante): <strong style="color: var(--rojo-lleno);">-30 dados</strong><br>
+                        • No pasar la Peste Necrótica: <strong style="color: var(--rojo-lleno);">-30 dados</strong><br>
+                        • No posicionarse bien para las Val'kyrs: <strong style="color: var(--rojo-lleno);">-30 dados</strong>
+                    </div>
+                    <div>
+                        • Robar agro de Espíritu Enfurecido por desesperado: <strong style="color: var(--rojo-lleno);">-30 dados</strong><br>
+                        • Lock / Mago / Feral que falle su CC o stun en Val'kyrs: <strong style="color: var(--rojo-lleno);">-20 dados</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXTRAS Y NORMATIVA DE CORE -->
+            <div style="background-color: rgba(248, 183, 0, 0.02); padding: 0.75rem; border-radius: 4px; border: 1px solid rgba(248, 183, 0, 0.2); grid-column: span 2;">
+                <strong style="color: var(--dorado-wow);">⚡ Faltas Generales y Sanciones de Convivencia</strong>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.25rem; font-size: 0.85rem; line-height: 1.4;">
+                    <div>
+                        • Irse AFK sin avisar previamente: <strong style="color: var(--rojo-lleno);">-30 dados</strong><br>
+                        • Pullear adds antes que el tank y WIPEAR: <strong style="color: var(--rojo-lleno);">-50 dados</strong><br>
+                        • Pullear boss saltándose el DBM Pull / Tank: <strong style="color: var(--rojo-lleno);">-30 dados</strong><br>
+                        • Causar un wipe directo por negligencia: <strong style="color: var(--rojo-lleno);">-50 dados</strong>
+                    </div>
+                    <div>
+                        • Falta de Buff de clase al iniciar el encuentro: <strong style="color: var(--rojo-lleno);">-20 dados</strong><br>
+                        <span style="color: var(--texto-claro); display: block; margin-top: 0.25rem;">
+                            📅 <strong>Miembros del Core:</strong> Si no notifican su ausencia antes de la mañana del mismo día del evento, recibirán un castigo de <strong>-30 dados</strong> aplicable en la siguiente raid.
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+            </section>
+        </main>
+
+        <!-- COLUMNA DERECHA (RECLUTAMIENTO) -->
+        <aside>
+            <section id="reclutamiento">
+                <h2>Reclutamiento</h2>
+                <div class="card">
+                    <p style="margin-bottom: 1rem; color: var(--texto-mutado);">Buscamos los siguientes roles:</p>
+                    <div class="recruitment-status"><span>Tanques</span><span class="badge closed">CERRADO</span></div>
+                    <div class="recruitment-status"><span>Healers</span><span class="badge open">ABIERTO</span></div>
+                    <div class="recruitment-status"><span>DPS Melee</span><span class="badge open">ABIERTO</span></div>
+                    <div class="recruitment-status"><span>DPS Rango</span><span class="badge open">ABIERTO</span></div>
+                    <p style="margin-top: 1.5rem; font-size: 0.9rem; text-align: center; color: var(--texto-mutado);">Habla con un oficial In-Game o por Discord.</p>
+                </div>
+            </section>
+            <section id="control-core">
+            <h2>Control del Core</h2>
+            <div class="card">        
+        <!-- Prioridad de Fragmentos de Agonía de Sombras -->
+        <h4 style="color: var(--clase-dk); margin-bottom: 0.5rem; font-size: 0.95rem; border-bottom: 1px solid #333; padding-bottom: 0.25rem;">
+            🪓 Fragmentos (Agonía)
+        </h4>
+        <div class="recruitment-status" style="background-color: rgba(196, 30, 58, 0.05);">
+            <span class="warrior">1. Maycolnoob </span>
+            <span class="badge open" style="background-color: rgba(248, 183, 0, 0.2); color: var(--dorado-wow);">35/50</span>
+        </div>
+        <div class="recruitment-status" style="margin-bottom: 1.5rem;">
+            <span class="warrior">2. NADIE </span>
+            <span class="badge closed" style="background-color: rgba(255,255,255,0.05); color: var(--texto-mutado);">En espera</span>
+        </div>
+
+        <!-- Lista de Castigados / En la Banca -->
+        <h4 style="color: var(--rojo-lleno); margin-bottom: 0.5rem; font-size: 0.95rem; border-bottom: 1px solid #333; padding-bottom: 0.25rem;">
+            🛑 Castigados / Banca
+        </h4>
+        <div class="recruitment-status" style="background-color: rgba(239, 68, 68, 0.05);">
+            <span style="color: var(--texto-claro);">NADIE</span>
+            <small style="color: var(--rojo-lleno); font-weight: bold;"></small>
+        </div>
+        <div class="recruitment-status" style="background-color: rgba(239, 68, 68, 0.05);">
+            <span style="color: var(--texto-claro);">Jordan</span>
+            <small style="color: var(--rojo-lleno); font-weight: bold;">Gilipollas</small>
+        </div>
+
+        </div>
+        </section>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; Gargolitas Inc <p>
+    </footer>
+
+</body>
+</html>
